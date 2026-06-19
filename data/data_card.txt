@@ -1,0 +1,40 @@
+=== CS7545 PHISHING DATASET — DATA CARD (v1 — June 18) ===
+Created by: Bawe
+Date: June 18, 2026 (initial version — GPT-4o emails to be added by EOD)
+
+SOURCES
+  - Kaggle: naserabdullahalam/phishing-email-dataset (Al-Subaiey et al. 2024)
+  - Kaggle: francescogreco97/human-llm-generated-phishing-legitimate-emails (Greco et al. 2024)
+  - GPT-4o API: PENDING — will be added and re-merged later today (June 18-19)
+
+LABEL SCHEMA
+  0 = Legitimate email
+  1 = Human-written phishing email
+  2 = AI-generated phishing email (currently from Greco llm-generated only)
+
+CURRENT COUNTS (v1, before GPT-4o additions)
+  Train: 7,749 rows (label 0: 3,499 | label 1: 3,500 | label 2: 750)
+  Val:   1,662 rows (label 0: 751 | label 1: 750 | label 2: 161)
+  Test:  1,661 rows (label 0: 750 | label 1: 750 | label 2: 161)
+
+NOTE TO DAVID
+  This is a working v1 — safe to start your TF-IDF and DistilBERT pipeline now.
+  Label 2 (AI phishing) is thinner than the other two classes right now (only
+  ~1,072 total rows) because it's only from bonus data, not yet my own GPT-4o
+  generation. I'll add ~150-200 more GPT-4o emails later today/tomorrow and
+  re-send updated train/val/test files. Your pipeline code doesn't need to
+  change when that happens - just re-run on the updated CSVs.
+
+PREPROCESSING STEPS
+  1. HTML stripped using BeautifulSoup
+  2. Email headers (From/To/Subject/Date) removed
+  3. Whitespace normalized
+  4. Duplicates removed
+  5. Texts under 20 characters removed
+  6. Classes 0 and 1 capped at 5,000 each; class 2 kept as-is (currently small)
+  7. Stratified 70/15/15 train/val/test split (random_state=42)
+
+FILES
+  data/processed/train.csv
+  data/processed/val.csv
+  data/processed/test.csv
