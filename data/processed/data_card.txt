@@ -1,0 +1,30 @@
+CS7545 — AI Phishing Detection · Data Card
+===========================================
+Generated: 2026-06-26 14:54
+
+SOURCES
+  Label 0 — Legitimate:      Enron corpus (via phishing_email.csv)
+  Label 1 — Human phishing:  Kaggle Al-Subaiey 2024 (via phishing_email.csv)
+  Label 2 — GPT-4o phishing: gpt4o_generated_raw.csv (200 emails)
+
+DATASET (after balance)
+  Total rows:     4,200
+  Label 0 count:  2,000
+  Label 1 count:  2,000
+  Label 2 count:  200
+
+  Avg word count (all):     161.7
+  Avg word count label 0:   208.3
+  Avg word count label 1:   116.4
+  Avg word count label 2:   148.2
+
+SPLIT (stratified 70/15/15, seed=42)
+  train.csv:  2,940 rows  | {0: np.int64(1400), 1: np.int64(1400), 2: np.int64(140)}
+  val.csv:    630 rows    | {0: np.int64(300), 1: np.int64(300), 2: np.int64(30)}
+  test.csv:   630 rows   | {0: np.int64(300), 1: np.int64(300), 2: np.int64(30)}
+
+FILES — SEND TO DAVID
+  data/processed/train.csv
+  data/processed/val.csv
+  data/processed/test.csv
+  data/processed/data_card.txt
